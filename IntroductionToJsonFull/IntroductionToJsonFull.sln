@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToJsonFull.App", "IntroductionToJsonFull.App\IntroductionToJsonFull.App.csproj", "{4822D159-E557-41F1-AEB0-966E4E37F400}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph_for_GDP", "Graph_for_GDP\Graph_for_GDP.csproj", "{CC7AF2BC-1D06-4F16-9014-A581A6C3F362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph_2", "Graph_2\Graph_2.csproj", "{C47AFB34-401A-4105-9ED8-5EFD75F3EDE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4822D159-E557-41F1-AEB0-966E4E37F400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4822D159-E557-41F1-AEB0-966E4E37F400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4822D159-E557-41F1-AEB0-966E4E37F400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC7AF2BC-1D06-4F16-9014-A581A6C3F362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7AF2BC-1D06-4F16-9014-A581A6C3F362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7AF2BC-1D06-4F16-9014-A581A6C3F362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7AF2BC-1D06-4F16-9014-A581A6C3F362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47AFB34-401A-4105-9ED8-5EFD75F3EDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47AFB34-401A-4105-9ED8-5EFD75F3EDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47AFB34-401A-4105-9ED8-5EFD75F3EDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47AFB34-401A-4105-9ED8-5EFD75F3EDE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Net;
 
 namespace IntroductionToJsonFull.App
 {
@@ -11,11 +15,12 @@ namespace IntroductionToJsonFull.App
     {
         // step one - using the nuget package manager
         // https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio 
-        static void Main(string[] args)
+        static void Main(string[] args) //deserialiszation basically converts one type into another type (can be anything)
         {
+            //new_();
             Console.WriteLine("Hello World!");
 
-            string json = @"{""key1"":""value1"",""key2"":""value2""}";
+            string json = @"{""key1"":""james_example"",""key2"":""age""}";
 
             IDictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
@@ -23,7 +28,7 @@ namespace IntroductionToJsonFull.App
                 Console.WriteLine($"{k}: {values[k]}");
 
 
-            // e.g. https://www.newtonsoft.com/json/help/html/DeserializeObject.htm 
+            // e.g. https://www.newtonsoft.com/json/help/html/DeserializeObject.htm
             string json2 = @"{
             'Email': 'james@example.com',
             'Active': true,
@@ -37,7 +42,48 @@ namespace IntroductionToJsonFull.App
             Account account = JsonConvert.DeserializeObject<Account>(json2);
 
             Console.WriteLine(account.Email);
+            // For GDP
+            string txt = "TextFile2.Txt";
+            StreamReader stream = new StreamReader(txt);
+            string text = stream.ReadToEnd();
+            IDictionary<string, double> GDP = JsonConvert.DeserializeObject < Dictionary<string, double>>(text);
+            //write key along with dashes to represent int value
+            Console.WriteLine("Enter 3 letter key");
+            string input = Console.ReadLine();
+            Console.WriteLine(GDP[input]);
+            double current = 0;
+            foreach (KeyValuePair<string, double> item in GDP)
+            {
+                if (item.Value > current)
+                    current = item.Value;
+                    
 
+            }
+            Console.WriteLine($"Highest value is {current}");
+                foreach (KeyValuePair<string,double> item in GDP)
+            {
+                Console.WriteLine(item.ToString());
+                int num = Convert.ToInt32(Math.Round(item.Value, 1));
+                Console.WriteLine($"Num is {num}");
+                for(int i = 1;i<=num; ++i)
+                {
+                    Console.Write("|");
+                }
+                Console.ReadKey();
+            }
+            Console.WriteLine(GDP[input]);
+            
+            Console.ReadKey();
+        }
+        static void new_()
+        {
+            string jsonDownload;
+            using(var wc = new WebClient()) //made web connections, using - open web then close it
+            {
+                jsonDownload = wc.DownloadString("https://pokeapi.co/api/v2/type/1/"); //website
+            }
+            dynamic j = JArray.Parse(jsonDownload);
+            dynamic l = j[0];
         }
 
         public class Account
