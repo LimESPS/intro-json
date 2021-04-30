@@ -62,9 +62,6 @@ namespace IntroductionToJsonFull.App
             {
                 if (item.Value > current)
                     current = item.Value;
-                    
-
-
             }
             Console.WriteLine($"Highest value is {current}");
                 foreach (KeyValuePair<string,double> item in GDP)
