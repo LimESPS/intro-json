@@ -10,7 +10,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Net;
 
 namespace IntroductionToJsonFull.App
 {
@@ -21,6 +20,7 @@ namespace IntroductionToJsonFull.App
         static void Main(string[] args) //deserialiszation basically converts one type into another type (can be anything)
         {
             //new_();
+            pokemon();
             Console.WriteLine("Hello World!");
 
             string json = @"{""key1"":""james_example"",""key2"":""age""}";
@@ -52,7 +52,7 @@ namespace IntroductionToJsonFull.App
             string txt = "TextFile2.Txt";
             StreamReader stream = new StreamReader(txt);
             string text = stream.ReadToEnd();
-            IDictionary<string, double> GDP = JsonConvert.DeserializeObject < Dictionary<string, double>>(text);
+            IDictionary<string, double> GDP = JsonConvert.DeserializeObject<Dictionary<string, double>>(text);
             //write key along with dashes to represent int value
             Console.WriteLine("Enter 3 letter key");
             string input = Console.ReadLine();
@@ -64,38 +64,38 @@ namespace IntroductionToJsonFull.App
                     current = item.Value;
             }
             Console.WriteLine($"Highest value is {current}");
-                foreach (KeyValuePair<string,double> item in GDP)
+            foreach (KeyValuePair<string, double> item in GDP)
             {
                 Console.WriteLine(item.ToString());
                 int num = Convert.ToInt32(Math.Round(item.Value, 1));
                 Console.WriteLine($"Num is {num}");
-                for(int i = 1;i<=num; ++i)
+                for (int i = 1; i <= num; ++i)
                 {
                     Console.Write("|");
                 }
                 Console.ReadKey();
             }
             Console.WriteLine(GDP[input]);
-            
+
             Console.ReadKey();
         }
         static void new_()
         {
-            
+
 
 
             string jsonDownload;
-            using(var wc = new WebClient())
+            using (var wc = new WebClient())
             {
                 jsonDownload = wc.DownloadString("http://api.worldbank.org/v2/countries/USA/indicators/NY.GDP.MKTP.CD?per_page=5000&format=json");
-           
+
             }
 
             dynamic j = JArray.Parse(jsonDownload);
 
             dynamic l = j[1];
             Console.WriteLine(l.Count);
-            foreach(dynamic row in l)
+            foreach (dynamic row in l)
             {
                 Console.WriteLine($"{row.date}: {row.countryiso3code}: ${row.value / 1000000000:F3}bn");
             }
@@ -105,6 +105,67 @@ namespace IntroductionToJsonFull.App
 
 
         }
+
+        static void pokemon()
+        {
+            string Json_d;
+            using (var wc = new WebClient())
+            {
+                Json_d = wc.DownloadString("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json");
+            }
+            dynamic j = JConstructor.Parse(Json_d);
+
+            List<Pokemon> pokemons = new List<Pokemon>();
+            Pokemon add = new Pokemon();
+
+            foreach (dynamic row in j.pokemon)
+            {
+                if ($"{row.id}" != null)
+                {
+                    pokemons.Add(add);
+                    add.ID = row.id;
+                }
+                if ($"{row.name}" != null)
+                {
+                    add.Name = row.name;
+                }
+                if ($"{row.type}" != null)
+                {
+                    add.Type = row.Type;
+                }
+                if ($"{row.weaknesses}" != null)
+                {
+                    add.Type = row.weaknesses;
+                }
+            }
+
+            
+            pokemons.Add(add);
+            foreach(Pokemon pokemon in pokemons)
+            {
+                if (pokemon.Weaknesses != null && pokemon.Name != null && pokemon.Type != null)
+                {
+                    Console.WriteLine($"Name: {pokemon.Name} \nType: {string.Join(",", (pokemon.Type.ToObject<string[]>()))}\nWeaknesses: {string.Join(",", (pokemon.Weaknesses.ToObject<string[]>()))}");
+                }
+             
+               
+            }
+        }
+        public class Pokemon
+        {
+            string name;
+            int id;
+            JArray type;
+            JArray weaknesses;
+
+            public string Name { get => name; set => name = value; }
+            public int ID { get => id ; set => id = value; }
+            public  JArray Type { get => type; set => type = value; }
+            public JArray Weaknesses { get => weaknesses; set => weaknesses = value; }
+
+           
+        }
+           
 
         public class Account
         {
